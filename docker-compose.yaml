@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  neo4jserver:
+    image: "neo4j:latest"
+    healthcheck:
+      test: ["CMD", "cypher-shell", "-u", "neo4j", "-p", "90909090", "CALL dbms.components()"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    networks:
+      - "experiment-network"
+
+  server:
+    image: "safeerep/neo4jserver:latest"
+    ports:
+      - "3001:3001"
+    env_file:
+      - server.compose.env
+    depends_on:
+      neo4jserver:
+        condition: service_healthy
+    networks:
+      - "experiment-network"
+
+networks:
+  experiment-network:
