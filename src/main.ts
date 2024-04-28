@@ -1,4 +1,5 @@
 import express, { Application, json, Request, Response, urlencoded } from "express";
+import router from "./routes";
 const server: Application = express()
 
 server.use(json())
@@ -10,6 +11,9 @@ server.get('/health', (req: Request, res: Response) => {
         message: "service_healthy"
     })
 })
+
+// router 
+server.use('/api', router)
 
 const PORT: number = Number(process.env.PORT)
 server.listen( PORT, () => {
