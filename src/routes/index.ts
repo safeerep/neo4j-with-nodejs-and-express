@@ -2,6 +2,7 @@ import { Router } from "express";
 const router = Router()
 
 import createRouter from "./create.routes";
+import readRoutes from "./read.routes";
 
 // to make new nodes or relationships;
 router.use('/create', createRouter)
