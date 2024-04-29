@@ -1,10 +1,10 @@
 import { Router } from "express";
 const router = Router()
 
-import createRouter from "./create.routes";
+import createToutes from "./create.routes";
 
 // to make new nodes or relationships;
-router.use('/create', createRouter)
+router.use('/create', createToutes)
 // to query according to the various requirements;
 router.use('/read')
 // to update the existing nodes or r/ps;
